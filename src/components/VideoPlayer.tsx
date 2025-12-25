@@ -43,7 +43,7 @@ const VideoPlayer = ({ src, onVideoChange }: VideoPlayerProps) => {
       )}
       <video
         ref={videoRef}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain bg-background"
         autoPlay
         loop
         playsInline
