@@ -18,72 +18,64 @@ const VideoPage = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
-      {/* Background gradient */}
-      <div 
-        className="absolute inset-0 -z-10"
-        style={{ background: "var(--gradient-festive)" }}
+    <main className="min-h-screen relative overflow-hidden">
+      {/* Full-screen Video Player */}
+      <VideoPlayer 
+        src={videos[currentVideoIndex]} 
+        key={currentVideoIndex}
       />
-      
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 -z-10 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 20% 50%, hsl(var(--accent)) 1px, transparent 1px)`,
-          backgroundSize: "40px 40px"
-        }} />
-      </div>
 
-      {/* Volume notice */}
-      <div className="volume-notice mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-        <Volume2 className="w-4 h-4 text-accent" />
-        <span>Please turn on your volume for the best experience!</span>
-      </div>
+      {/* Overlay content */}
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-between p-4 md:p-8 pointer-events-none">
+        {/* Volume notice at top */}
+        <div className="volume-notice animate-fade-up pointer-events-auto" style={{ animationDelay: "0.2s" }}>
+          <Volume2 className="w-4 h-4 text-accent" />
+          <span>Tap the speaker icon to unmute!</span>
+        </div>
 
-      {/* Video Player */}
-      <div className="w-full max-w-4xl mb-8">
-        <VideoPlayer 
-          src={videos[currentVideoIndex]} 
-          key={currentVideoIndex}
-        />
-      </div>
+        {/* Bottom controls */}
+        <div className="flex flex-col items-center gap-4 pointer-events-auto">
+          {/* Video indicator */}
+          <div className="flex gap-2 mb-2">
+            {videos.map((_, index) => (
+              <div
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  index === currentVideoIndex 
+                    ? "bg-accent w-6" 
+                    : "bg-foreground/30"
+                }`}
+              />
+            ))}
+          </div>
 
-      {/* Video indicator */}
-      <div className="flex gap-2 mb-6">
-        {videos.map((_, index) => (
-          <div
-            key={index}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentVideoIndex 
-                ? "bg-accent w-6" 
-                : "bg-muted-foreground/30"
-            }`}
-          />
-        ))}
-      </div>
+          {/* Action buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            <button
+              onClick={handleNextPage}
+              className="btn-primary-christmas flex items-center gap-2 group"
+            >
+              <span>Next Page</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </button>
+            
+            <button
+              onClick={handleNextVideo}
+              className="btn-gold flex items-center gap-2 group"
+            >
+              <span>Next Video</span>
+              <PlayCircle className="w-5 h-5 transition-transform group-hover:scale-110" />
+            </button>
+          </div>
 
-      {/* Action buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-        <button
-          onClick={handleNextPage}
-          className="btn-primary-christmas flex items-center gap-2 group"
-        >
-          <span>Next Page</span>
-          <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-        </button>
-        
-        <button
-          onClick={handleNextVideo}
-          className="btn-gold flex items-center gap-2 group"
-        >
-          <span>Next Video</span>
-          <PlayCircle className="w-5 h-5 transition-transform group-hover:scale-110" />
-        </button>
+          {/* Spacer for bottom margin */}
+          <div className="h-16" />
+        </div>
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute bottom-4 left-4 text-4xl opacity-20 animate-float">🎄</div>
-      <div className="absolute top-10 right-10 text-3xl opacity-20 animate-float" style={{ animationDelay: "1s" }}>⭐</div>
-      <div className="absolute top-1/4 left-8 text-2xl opacity-15 animate-float" style={{ animationDelay: "2s" }}>❄️</div>
+      <div className="absolute bottom-24 left-4 text-4xl opacity-30 animate-float z-0 pointer-events-none">🎄</div>
+      <div className="absolute top-20 right-10 text-3xl opacity-30 animate-float z-0 pointer-events-none" style={{ animationDelay: "1s" }}>⭐</div>
     </main>
   );
 };
