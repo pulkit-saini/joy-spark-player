@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, Volume2 } from "lucide-react";
 import VideoPlayer from "@/components/VideoPlayer";
 
 const videos = ["/videos/video-1.mp4", "/videos/video-2.mp4"];
@@ -27,8 +27,11 @@ const VideoPage = () => {
 
       {/* Overlay content */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-between p-4 md:p-8 pointer-events-none">
-        {/* Spacer for top */}
-        <div />
+        {/* Volume notice at top */}
+        <div className="volume-notice animate-fade-up pointer-events-auto" style={{ animationDelay: "0.2s" }}>
+          <Volume2 className="w-4 h-4 text-accent" />
+          <span>Click the speaker button to mute/unmute</span>
+        </div>
 
         {/* Bottom controls */}
         <div className="flex flex-col items-center gap-4 pointer-events-auto">
