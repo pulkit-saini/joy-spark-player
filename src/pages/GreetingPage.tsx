@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Sparkles } from "lucide-react";
+import { ArrowLeft, Heart } from "lucide-react";
 import Snowfall from "@/components/Snowfall";
 
 const GreetingPage = () => {
@@ -7,99 +7,124 @@ const GreetingPage = () => {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
-      {/* Background gradient */}
+      {/* Warm gradient background */}
       <div 
         className="absolute inset-0 -z-20"
-        style={{ background: "var(--gradient-snow)" }}
+        style={{ 
+          background: "linear-gradient(135deg, hsl(0 40% 12%) 0%, hsl(350 50% 8%) 50%, hsl(220 30% 8%) 100%)" 
+        }}
       />
+      
+      {/* Soft glow orbs */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl -z-10" />
       
       {/* Snowfall effect */}
       <Snowfall />
 
       {/* Greeting Card */}
-      <div className="greeting-card max-w-2xl w-full text-center z-20">
-        {/* Top decoration */}
-        <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-6xl animate-float">
-          🎄
+      <div className="relative max-w-lg w-full text-center z-20">
+        {/* Floating hearts decoration */}
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex gap-3">
+          <Heart className="w-6 h-6 text-primary fill-primary animate-float opacity-80" />
+          <Heart className="w-8 h-8 text-primary fill-primary animate-float" style={{ animationDelay: "0.5s" }} />
+          <Heart className="w-6 h-6 text-primary fill-primary animate-float opacity-80" style={{ animationDelay: "1s" }} />
         </div>
 
-        {/* Card content */}
-        <div className="pt-8 pb-4">
-          {/* Stars decoration */}
-          <div className="flex justify-center gap-2 mb-6 text-accent">
-            <Sparkles className="w-5 h-5 animate-twinkle" />
-            <Sparkles className="w-6 h-6 animate-twinkle" style={{ animationDelay: "0.3s" }} />
-            <Sparkles className="w-5 h-5 animate-twinkle" style={{ animationDelay: "0.6s" }} />
-          </div>
+        {/* Main card */}
+        <div 
+          className="relative p-8 md:p-10 rounded-3xl overflow-hidden"
+          style={{
+            background: "linear-gradient(145deg, hsl(0 0% 100% / 0.08), hsl(0 0% 100% / 0.02))",
+            backdropFilter: "blur(20px)",
+            border: "1px solid hsl(0 0% 100% / 0.1)",
+            boxShadow: "0 25px 80px rgba(0,0,0,0.4), inset 0 1px 0 hsl(0 0% 100% / 0.1)"
+          }}
+        >
+          {/* Top Christmas tree */}
+          <div className="text-5xl mb-4 animate-float">🎄</div>
 
           {/* Main greeting */}
-          <h1 
-            className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-4 text-shadow-glow animate-fade-up"
-          >
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-3 animate-fade-up leading-tight">
             Merry Christmas
           </h1>
           
-          {/* Emoji decoration */}
-          <div className="text-3xl md:text-4xl mb-6 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            🎄 ✨ 🎅 ✨ 🎄
+          <p className="text-accent text-lg md:text-xl font-display italic mb-6 animate-fade-up" style={{ animationDelay: "0.15s" }}>
+            & Happy New Year!
+          </p>
+
+          {/* Decorative divider */}
+          <div className="flex items-center justify-center gap-3 mb-6 animate-fade-up" style={{ animationDelay: "0.25s" }}>
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-accent/50" />
+            <span className="text-xl">✨</span>
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-accent/50" />
           </div>
 
-          {/* Sub message */}
-          <p 
-            className="font-body text-lg md:text-xl text-muted-foreground mb-8 animate-fade-up max-w-md mx-auto"
-            style={{ animationDelay: "0.4s" }}
-          >
-            Wishing you endless joy, warmth, and love this holiday season and throughout the new year!
-          </p>
+          {/* Heart-touching message */}
+          <div className="space-y-4 animate-fade-up" style={{ animationDelay: "0.35s" }}>
+            <p className="font-body text-lg text-foreground/90 leading-relaxed">
+              To someone truly special,
+            </p>
+            <p className="font-body text-muted-foreground leading-relaxed px-2">
+              May this Christmas bring you endless moments of joy, 
+              warmth wrapped in love, and memories that last forever. 
+              You make every day brighter just by being you. 💕
+            </p>
+          </div>
 
-          {/* Decorative line */}
-          <div 
-            className="w-24 h-1 mx-auto rounded-full mb-8 animate-fade-up"
-            style={{ 
-              background: "var(--gradient-gold)",
-              animationDelay: "0.5s" 
-            }}
-          />
-
-          {/* Additional message */}
-          <p 
-            className="font-display text-xl md:text-2xl text-accent italic mb-8 animate-fade-up"
-            style={{ animationDelay: "0.6s" }}
-          >
-            "May your days be merry and bright"
-          </p>
-
-          {/* Bottom emojis */}
-          <div className="flex justify-center gap-3 text-2xl mb-6 animate-fade-up" style={{ animationDelay: "0.7s" }}>
+          {/* Cute emoji row */}
+          <div className="flex justify-center gap-2 mt-6 text-2xl animate-fade-up" style={{ animationDelay: "0.45s" }}>
             <span className="animate-float">🎁</span>
-            <span className="animate-float" style={{ animationDelay: "0.5s" }}>❄️</span>
-            <span className="animate-float" style={{ animationDelay: "1s" }}>🦌</span>
-            <span className="animate-float" style={{ animationDelay: "1.5s" }}>🔔</span>
-            <span className="animate-float" style={{ animationDelay: "2s" }}>🎁</span>
+            <span className="animate-float" style={{ animationDelay: "0.3s" }}>🦌</span>
+            <span className="animate-float" style={{ animationDelay: "0.6s" }}>❄️</span>
+            <span className="animate-float" style={{ animationDelay: "0.9s" }}>🎅</span>
+            <span className="animate-float" style={{ animationDelay: "1.2s" }}>🎁</span>
           </div>
+
+          {/* Warm closing */}
+          <div className="mt-8 pt-6 border-t border-foreground/10 animate-fade-up" style={{ animationDelay: "0.55s" }}>
+            <p className="font-display text-xl text-accent flex items-center justify-center gap-2">
+              With all my love
+              <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" />
+            </p>
+          </div>
+
+          {/* Corner decorations inside card */}
+          <div className="absolute top-3 left-3 text-lg opacity-40">❄️</div>
+          <div className="absolute top-3 right-3 text-lg opacity-40">❄️</div>
+          <div className="absolute bottom-3 left-3 text-lg opacity-40">🌟</div>
+          <div className="absolute bottom-3 right-3 text-lg opacity-40">🌟</div>
         </div>
 
-        {/* Card border glow */}
-        <div className="absolute inset-0 rounded-3xl pointer-events-none" 
-          style={{
-            boxShadow: "inset 0 0 60px hsl(var(--accent) / 0.1)"
-          }}
-        />
+        {/* Bottom hearts */}
+        <div className="flex justify-center gap-1 mt-6 animate-fade-up" style={{ animationDelay: "0.65s" }}>
+          {[...Array(5)].map((_, i) => (
+            <Heart 
+              key={i} 
+              className="w-4 h-4 text-primary/60 fill-primary/60" 
+              style={{ 
+                animationDelay: `${i * 0.2}s`,
+                opacity: i === 2 ? 1 : 0.6,
+                transform: `scale(${i === 2 ? 1.2 : 1})`
+              }} 
+            />
+          ))}
+        </div>
       </div>
 
       {/* Back button */}
       <button
         onClick={() => navigate("/")}
-        className="btn-secondary-christmas flex items-center gap-2 mt-8 z-20 group animate-fade-up"
-        style={{ animationDelay: "0.8s" }}
+        className="btn-secondary-christmas flex items-center gap-2 mt-10 z-20 group animate-fade-up"
+        style={{ animationDelay: "0.75s" }}
       >
         <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
         <span>Back to Videos</span>
       </button>
 
-      {/* Corner decorations */}
-      <div className="absolute bottom-6 right-6 text-5xl opacity-30 animate-float z-0">🎅</div>
-      <div className="absolute top-6 left-6 text-4xl opacity-30 animate-float z-0" style={{ animationDelay: "1.5s" }}>⛄</div>
+      {/* Ambient corner decorations */}
+      <div className="absolute bottom-8 right-8 text-4xl opacity-20 animate-float z-0">🎅</div>
+      <div className="absolute top-8 left-8 text-3xl opacity-20 animate-float z-0" style={{ animationDelay: "1.5s" }}>⛄</div>
     </main>
   );
 };
