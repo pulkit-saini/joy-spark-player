@@ -9,7 +9,7 @@ interface VideoPlayerProps {
 const VideoPlayer = ({ src, onVideoChange }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -46,7 +46,6 @@ const VideoPlayer = ({ src, onVideoChange }: VideoPlayerProps) => {
         className="w-full h-full object-cover"
         autoPlay
         loop
-        muted={isMuted}
         playsInline
         onCanPlay={handleCanPlay}
       >
